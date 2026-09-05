@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: darkx-tutorial-bot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.20.0
+      - key: PAIRING_NUMBER
+        value: ""

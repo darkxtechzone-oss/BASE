@@ -1,0 +1,20 @@
+{
+  "name": "darkx-tutorial-bot",
+  "version": "1.0.0",
+  "description": "DarkX Tutorial WhatsApp Bot - bot ndogo ya mafunzo yenye pairing code (direct + web)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "MrX Dev",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^6.7.9",
+    "express": "^4.19.2",
+    "pino": "^9.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
