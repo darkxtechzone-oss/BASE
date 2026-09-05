@@ -242,26 +242,46 @@ module.exports = async (sock, m, chatUpdate, store) => {
 
         const pluginMenuSections = pluginLoader.getMenuSections();
         const totalCommands = pluginLoader.getPluginCount();
+        const CHANNEL_LINK = 'https://whatsapp.com/channel/0029Vb8xZ8M2UPBAD8NV7X3b';
 
-        const menuText = `╔〘 *${config.settings.title}*
-║ 👤 Owner  : ${config.owner}
-║ 🧩 Prefix : [ . ]
-║ 🖥️ Host   : ${host}
-║ 🧠 Commands: ${totalCommands}
-║ ⚙️ Mode   : ${mode}
-║ ⏱️ Uptime : ${uptime}
-║ ⚡ Ping   : ${ping.toFixed(0)} ms
-║ 📊 RAM    : ${usedMem.toFixed(2)} MB / ${totalMem.toFixed(2)} GB
-╚═〘 System Status
+        const menuText = `┏━❖ *${config.settings.title}* ❖━┓
 
-${pluginMenuSections}`;
+👤 *Owner*    : ${config.owner}
+🧩 *Prefix*   : [ . ]
+🧠 *Commands* : ${totalCommands}
+⚙️ *Mode*     : ${mode}
+🖥️ *Host*     : ${host}
+⏱️ *Uptime*   : ${uptime}
+⚡ *Ping*     : ${ping.toFixed(0)} ms
+📊 *RAM*      : ${usedMem.toFixed(2)} MB / ${totalMem.toFixed(2)} GB
+
+┗━━━━━━━━━━━━━━━━━┛
+
+${pluginMenuSections}
+
+📢 *Channel:* ${CHANNEL_LINK}
+${config.settings.footer}`;
+
+        // Soma picha ya menu kutoka folder ya "media" (media/menu.jpg).
+        // Ikiwa haipo, itatumia thumbUrl kama fallback badala ya kukwama.
+        const menuImagePath = path.join(__dirname, 'media', 'menu.jpg');
+        const menuImage = fs.existsSync(menuImagePath) ? fs.readFileSync(menuImagePath) : { url: config.thumbUrl };
 
         await sock.sendMessage(
           m.chat,
           {
-            image: { url: config.thumbUrl },
+            image: menuImage,
             caption: menuText,
-            contextInfo: { mentionedJid: [m.sender] }
+            contextInfo: {
+              mentionedJid: [m.sender],
+              externalAdReply: {
+                title: config.settings.title,
+                body: 'Bofya kujiunga na channel',
+                thumbnailUrl: config.thumbUrl,
+                sourceUrl: CHANNEL_LINK,
+                renderLargerThumbnail: false
+              }
+            }
           },
           { quoted: m }
         );
