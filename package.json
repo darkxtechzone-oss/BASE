@@ -11,10 +11,14 @@
   "dependencies": {
     "@hapi/boom": "^10.0.1",
     "@whiskeysockets/baileys": "^7.0.0-rc.6",
+    "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "form-data": "^4.0.0",
     "mongodb": "^6.9.0",
-    "pino": "^9.3.2"
+    "node-fetch": "^2.7.0",
+    "pino": "^9.3.2",
+    "yt-search": "^2.12.1"
   },
   "engines": {
     "node": ">=18.0.0"
