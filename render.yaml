@@ -10,3 +10,5 @@ services:
         value: 18.20.0
       - key: PAIRING_NUMBER
         value: ""
+      - key: MONGODB_URI
+        sync: false
